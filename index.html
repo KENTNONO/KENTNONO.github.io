@@ -30,7 +30,6 @@
         <h3>2. 前鏡頭 - 拍照</h3>
         <button id="captureImageBtn" disabled>開啟前鏡頭拍照</button>
         <p>顯示結果：</p>
-        <textarea id="imageUserFileResult" disabled="disabled"></textarea> 
         <img id="imageUserFileImage" class="hidden"/>
         <hr/>
     </div>
@@ -83,7 +82,7 @@
             }
 
             function captureImage(captureType, acceptType) {
-                navigator.mediaDevices.getUserMedia({ video: true })
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
                     .then(function (stream) {
                         var imageElement = $("#imageUserFileImage")[0];
                         var videoElement = document.createElement("video");
@@ -100,9 +99,7 @@
                             context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
                             var imageDataUrl = canvas.toDataURL(acceptType);
 
-                            $("#imageUserFileResult").val(imageDataUrl);
-                            imageElement.classList.remove("hidden");
-                            imageElement.src = imageDataUrl;
+
                         };
                     })
                     .catch(function (error) {
