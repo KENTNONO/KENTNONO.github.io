@@ -82,7 +82,7 @@
             }
 
             function captureImage(captureType, acceptType) {
-                navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+                navigator.mediaDevices.getUserMedia({ video: true })
                     .then(function (stream) {
                         var imageElement = $("#imageUserFileImage")[0];
                         var videoElement = document.createElement("video");
