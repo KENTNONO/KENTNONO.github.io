@@ -11,10 +11,10 @@
 </head>
 
 <body>
-    <button onclick="openMedia()" >开启摄像头</button>
-    <button id="flip-button" >轉換攝像頭</button>
+    <button onclick="openMedia(true)" >開啟前攝像頭</button>
+    <button onclick="openMedia(false)" >使用手機後攝像頭</button>
     <button onclick="takePhoto()" >拍照</button><br/><br/>
-    <video style="display: none;" class="src-video" width="500px" height="500px" autoplay="autoplay"></video>
+    <video style="display: none;" class="src-video" width="500px" height="500px" autoplay="autoplay" playsinline></video>
     <canvas id="canvas" width="500px" height="500px" style="display: none;"></canvas>
     <img src="" alt="" class="photo">
     
@@ -23,13 +23,13 @@
     let srcVideo = document.querySelector('video.src-video');
     let mediaStream;
     let photo=document.querySelector('img.photo');
-    var front = false;
-    document.getElementById("flip-button").onclick = function () {
-    front = !front;
-    };
+    // var front = false;
+    // document.getElementById("flip-button").onclick = function () {
+    // front = !front;
+    // };
 
     // 开启摄像头
-    let openMedia = function () {
+    let openMedia = function (front) {
         photo.src='';
         srcVideo.style.display='block';
         let constraints = {
